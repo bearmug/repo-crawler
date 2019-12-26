@@ -1,30 +1,49 @@
 package org.bearmug.crawler.data
 
+import arrow.core.Option
 import java.time.Instant
+import java.util.*
 
-data class RootRepository(
-    val rootUrl: String,
-    val projects: List<Project>)
+typealias ImportJobId = UUID
+data class ImportJob(
+    val id: Option<ImportJobId> = Option.empty(),
+    val status: JobStatus = JobStatus.New,
+    val type: JobType,
+    val updatedAt: Option<Instant> = Option.empty(),
+    val createdAt: Option<Instant> = Option.empty(),
+    val itemsProcessed: Int = 0,
+    val itemsTotal: Option<Int> = Option.empty(),
+    val importUrl: String,
+    val nestedUrls: List<String> = listOf()) {
 
-data class Project(
-    val key: String,
-    val repos: List<Repo>)
+    enum class JobStatus { New, Wip, Finished, Cancelled }
+    enum class JobType { ProjectsImport, ReposImport, PullRequestsImport }
+}
 
-data class Repo(
-    val slug: String,
-    val pullRequests: List<PullRequest>)
+data class ImportJobEvent(
+    val id: ImportJobId,
+    val type: EventType,
+    val eventTimetamp: Instant,
+    val itemsProcessed: Int,
+    val itemsTotal: Option<Int>,
+    val processedDelta: Int,
+    val failedDelta: Int) {
 
-data class PullRequest(
+    enum class EventType { JobSubmitted, ImportUpdate, JobCancelled, JobFinished }
+}
+
+data class StashPullRequest(
     val id: Int,
     val creator: String,
     val state: PRState,
     val createdDate: Instant,
     val updatedDate: Instant,
-    val changes: List<Change>) {
+    val changes: List<StashChange>) {
+
     enum class PRState { Merged }
 }
 
-data class Change(
+data class StashChange(
     val fileName: String,
     val fileExtension: String,
     val rowsAdded: Int,
@@ -41,7 +60,7 @@ data class MetricPullRequest(
 )
 data class MetricCodeChange(
     val creator: String,
-    val mergeDate: Instant,
+    val date: Instant,
     val projectKey: String,
     val repoSlug: String,
     val rowsNumber: Int,
@@ -49,4 +68,4 @@ data class MetricCodeChange(
     val fileType: String
 )
 
-enum class MetricChangeType { ADDED, REMOVED }
+enum class MetricChangeType { Added, Removed }
