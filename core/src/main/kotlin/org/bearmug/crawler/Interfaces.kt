@@ -8,11 +8,11 @@ import org.bearmug.crawler.data.ImportJobId
 typealias IssueDescription = String
 interface ImportService {
     fun triggerProjectsImportJob(rootUrl: String): Either<IssueDescription, ImportJobId>
-    fun cancelProjectsImport(rootUrl: String): Either<IssueDescription, ImportJobId>
+    fun cancelProjectsImport(id: ImportJobId): Either<IssueDescription, ImportJobId>
 }
 
 interface ImportJobRepo {
-    fun submitNewJob(job: ImportJob): Either<IssueDescription, ImportJob>
+    fun submitJob(job: ImportJob): Either<IssueDescription, ImportJob>
     fun getJobDescription(id: ImportJobId): Either<IssueDescription, ImportJob>
     fun cancelJob(id: ImportJobId): Either<IssueDescription, ImportJob>
 }

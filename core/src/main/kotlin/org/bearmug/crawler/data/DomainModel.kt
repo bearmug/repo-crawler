@@ -6,14 +6,14 @@ import java.util.*
 
 typealias ImportJobId = UUID
 data class ImportJob(
-    val id: Option<ImportJobId> = Option.empty(),
+    val id: ImportJobId,
     val status: JobStatus = JobStatus.New,
     val type: JobType,
     val updatedAt: Option<Instant> = Option.empty(),
     val createdAt: Option<Instant> = Option.empty(),
     val itemsProcessed: Int = 0,
     val itemsTotal: Option<Int> = Option.empty(),
-    val importUrl: String,
+    val importUrl: String = "",
     val nestedUrls: List<String> = listOf()) {
 
     enum class JobStatus { New, Wip, Finished, Cancelled }
