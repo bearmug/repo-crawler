@@ -11,13 +11,15 @@ data class ImportJob(
     val type: JobType,
     val updatedAt: Option<Instant> = Option.empty(),
     val createdAt: Option<Instant> = Option.empty(),
-    val itemsProcessed: Int = 0,
-    val itemsTotal: Option<Int> = Option.empty(),
+    val progress: ImportProgress = ImportProgress(),
     val importUrl: String = "",
     val nestedUrls: List<String> = listOf()) {
 
     enum class JobStatus { New, Wip, Finished, Cancelled }
     enum class JobType { ProjectsImport, ReposImport, PullRequestsImport }
+    data class ImportProgress(val itemsProcessed: Int = 0,
+                              val itemsTotal: Option<Int> = Option.empty(),
+                              val nextPageStart: Int = 0)
 }
 
 data class ImportJobEvent(

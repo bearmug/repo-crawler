@@ -5,4 +5,9 @@ import org.bearmug.crawler.ImportJobRepo
 import org.bearmug.crawler.IssueDescription
 import org.bearmug.crawler.data.ImportJob
 
-fun ImportJob.import(repo: ImportJobRepo): Either<IssueDescription, ImportJob> = TODO()
+fun ImportJob.import(repo: ImportJobRepo): Either<IssueDescription, ImportJob> {
+    val url = this.nextPageUrl()
+//    val response = stashService.queryData(url)
+//    val updatedJob = repo.updateJob(response)
+//    val events = emitEvents()
+}

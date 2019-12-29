@@ -14,7 +14,7 @@ class ExecutionServiceImpl(
 ) : ExecutionService {
     override fun import(id: ImportJobId): Either<IssueDescription, ImportJob> =
         Either.fx {
-            val (job) = repo.findJob(id)
+            val (job) = repo.find(id)
             val (importedJob) = job.import(repo)
             importedJob
         }

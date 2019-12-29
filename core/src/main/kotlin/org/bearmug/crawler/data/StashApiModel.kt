@@ -4,7 +4,8 @@ import java.time.Instant
 
 data class StashProjectsResponse(
     val isLastPage: Boolean,
-    val values: List<StashProject>) {
+    val values: List<StashProject>,
+    val nextPageStart: Int) {
     data class StashProject(
         val key: String,
         val public: Boolean,
@@ -13,13 +14,15 @@ data class StashProjectsResponse(
 
 data class StashReposResponse(
     val isLastPage: Boolean,
-    val values: List<StashRepo>) {
+    val values: List<StashRepo>,
+    val nextPageStart: Int) {
     data class StashRepo(val slug: String)
 }
 
 data class StashPullRequestsResponse(
     val isLastPage: Boolean,
-    val values: List<StashPullRequest>) {
+    val values: List<StashPullRequest>,
+    val nextPageStart: Int) {
     data class StashPullRequest(
         val id: Int,
         val state: String,

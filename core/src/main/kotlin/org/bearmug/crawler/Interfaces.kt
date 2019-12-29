@@ -19,8 +19,8 @@ interface ExecutionService {
 }
 
 interface ImportJobRepo {
-    fun findJob(id: ImportJobId): Either<IssueDescription, ImportJob>
     fun create(job: ImportJob): Either<IssueDescription, ImportJob>
+    fun find(id: ImportJobId): Either<IssueDescription, ImportJob>
     fun cancelRequested(id: ImportJobId): Either<IssueDescription, ImportJob>
     fun cancelComplete(id: ImportJobId): Either<IssueDescription, ImportJob>
 }

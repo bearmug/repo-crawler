@@ -7,7 +7,7 @@ import org.bearmug.crawler.data.ImportJob
 import org.bearmug.crawler.data.ImportJobId
 
 abstract class ImportJobRepoImpl : ImportJobRepo {
-    override fun findJob(id: ImportJobId): Either<IssueDescription, ImportJob> {
+    override fun find(id: ImportJobId): Either<IssueDescription, ImportJob> {
         TODO("not implemented")
     }
 
