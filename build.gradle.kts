@@ -16,10 +16,12 @@ subprojects {
     }
 
     val kotlinVersion: String by project
+    val coroutinesVersion: String by project
     val arrowVersion: String by project
     dependencies {
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
         implementation("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
+        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
         implementation("io.arrow-kt:arrow-core:$arrowVersion")
         implementation("io.arrow-kt:arrow-core-data:$arrowVersion")
 

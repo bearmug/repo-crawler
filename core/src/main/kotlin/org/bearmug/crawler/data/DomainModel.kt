@@ -32,6 +32,13 @@ data class ImportJobEvent(
     enum class EventType { JobSubmitted, ImportUpdate, JobCancelled, JobFinished }
 }
 
+data class ImportCommand(
+    val id: ImportJobId,
+    val type: CommandType) {
+
+    enum class CommandType { Import, Cancel }
+}
+
 data class StashPullRequest(
     val id: Int,
     val creator: String,

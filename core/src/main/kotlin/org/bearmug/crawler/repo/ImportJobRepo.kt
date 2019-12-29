@@ -11,7 +11,7 @@ class ImportJobRepoImpl : ImportJobRepo {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun getJobDescription(id: ImportJobId): Either<IssueDescription, ImportJob> {
+    override fun findJob(id: ImportJobId): Either<IssueDescription, ImportJob> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
